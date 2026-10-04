@@ -171,14 +171,25 @@ body {
 
 @media (min-width: 640px) {
   .page-glow {
-    top: 0;
-    left: 50%;
-    height: 35rem;
-    width: 35rem;
-    transform: translate(-50%, -50%);
-    border-radius: 9999px;
-    background: var(--color-accent-a10);
-    filter: blur(64px);
+    /* Approximate the 35rem circle's 64px blur directly in the gradient.
+       Include the soft edges in the box so Safari needn't composite a
+       transformed filter across the section's overflow clip. */
+    top: -28rem;
+    left: calc(50% - 28rem);
+    height: 56rem;
+    width: 56rem;
+    background: radial-gradient(
+      circle closest-side at center,
+      var(--color-accent-a10) 0%,
+      rgba(255, 184, 119, 0.099) 35%,
+      rgba(255, 184, 119, 0.085) 46%,
+      rgba(255, 184, 119, 0.065) 55%,
+      rgba(255, 184, 119, 0.045) 62.5%,
+      rgba(255, 184, 119, 0.027) 70%,
+      rgba(255, 184, 119, 0.009) 80%,
+      rgba(255, 184, 119, 0.002) 90%,
+      rgba(255, 184, 119, 0) 100%
+    );
   }
 
   .preview-glow {
