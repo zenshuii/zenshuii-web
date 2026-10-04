@@ -156,6 +156,7 @@ body {
 }
 
 .preview-glow {
+  pointer-events: none;
   background: radial-gradient(
     ellipse at center,
     rgba(255, 184, 119, 0.16),
@@ -163,10 +164,36 @@ body {
   );
 }
 
+.card-hover-glow {
+  /* Keep hover opacity animation without filtering a clipped layer. */
+  background: radial-gradient(
+    ellipse 45% 100% at 50% 0%,
+    rgba(255, 184, 119, 0.1) 0%,
+    rgba(255, 184, 119, 0.045) 40%,
+    rgba(255, 184, 119, 0.01) 75%,
+    rgba(255, 184, 119, 0) 100%
+  );
+}
+
 .preview-surface {
   box-shadow:
     0 0 38px 8px rgba(255, 184, 119, 0.12),
     var(--shadow-card);
+}
+
+.work-preview-glow {
+  /* Bake the corner circle's softness into the background to avoid a
+     filtered, transformed layer repainting inside the rounded card. */
+  background: radial-gradient(
+    circle 18.5rem at calc(100% - 2.1667rem) 2.1667rem,
+    rgba(255, 184, 119, 0.11) 0%,
+    rgba(255, 184, 119, 0.087) 20%,
+    rgba(255, 184, 119, 0.054) 35%,
+    rgba(255, 184, 119, 0.025) 50%,
+    rgba(255, 184, 119, 0.008) 65%,
+    rgba(255, 184, 119, 0.0017) 80%,
+    rgba(255, 184, 119, 0) 100%
+  );
 }
 
 @media (min-width: 640px) {
@@ -193,14 +220,15 @@ body {
   }
 
   .preview-glow {
-    background: var(--color-accent-a10);
-    filter: blur(40px);
-    transform: translateZ(0);
-    will-change: filter;
+    display: none;
   }
 
   .preview-surface {
-    box-shadow: var(--shadow-card);
+    /* Anchor the halo to the actual card, excluding any sibling caption.
+       A separate empty shadow box leaves a visible cutout behind it. */
+    box-shadow:
+      0 0 80px 24px var(--color-accent-a10),
+      var(--shadow-card);
   }
 }
 

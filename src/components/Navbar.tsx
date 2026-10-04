@@ -11,8 +11,12 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full border-b border-(--color-border) bg-(--color-surface-2-a90) shadow-(--shadow-navigation) backdrop-blur-xl transition-all ${open ? 'z-40' : 'z-50'}`}>
-      <div className="px-5 sm:px-8 lg:px-12">
+      className={`fixed top-0 left-0 isolate w-full border-b border-(--color-border) shadow-(--shadow-navigation) ${open ? 'z-40' : 'z-50'}`}>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 bg-(--color-surface-2-a90) backdrop-blur-xl"
+      />
+      <div className="relative z-10 px-5 sm:px-8 lg:px-12">
         <div className="mx-auto flex min-h-18 max-w-7xl items-center justify-between py-3">
           <Link
             href="/"

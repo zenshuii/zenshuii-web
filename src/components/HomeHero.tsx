@@ -157,7 +157,10 @@ export function HomeHero() {
               </div>
             </div>
             <div className="relative min-h-64 overflow-hidden border-t border-(--color-border) bg-(--color-surface-1) p-7 md:min-h-0 md:border-t-0 md:border-l md:p-10">
-              <div className="absolute top-0 right-0 hidden h-52 w-52 translate-x-1/3 -translate-y-1/3 rounded-full bg-(--color-accent-a15) blur-3xl md:block" />
+              <div
+                aria-hidden="true"
+                className="work-preview-glow pointer-events-none absolute inset-0 hidden md:block"
+              />
               <div className="relative flex h-full min-h-48 flex-col rounded-2xl border border-(--color-border-strong) bg-(--color-surface-2-a90) p-6">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-semibold text-(--color-on-surface)">
@@ -201,7 +204,7 @@ export function HomeHero() {
                   className="group relative min-h-64 overflow-hidden rounded-(--radius-card) border border-(--color-border) bg-(--color-surface-2) p-7 transition-colors duration-300 hover:border-(--color-border-strong) sm:p-8">
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute -top-3 right-10 left-10 h-8 rounded-full bg-linear-to-b from-(--color-accent-a30) to-transparent opacity-45 blur-lg transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100"
+                    className="card-hover-glow pointer-events-none absolute inset-x-0 top-0 h-16 opacity-45 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100"
                   />
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold text-(--color-accent)">

@@ -5,35 +5,61 @@ import { isActiveLink, isAnyChildActive } from '@/utils/navHelpers';
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 export function DesktopNav() {
   const pathname = usePathname();
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
 
   const appsDropdownRef = useRef<HTMLDivElement>(null);
-  const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dropdownButtonRef = useRef<HTMLButtonElement>(null);
+  const submenuId = useId();
 
-  const isTouchDevice = () =>
-    typeof window !== 'undefined' &&
-    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  const clearCloseTimer = () => {
+    if (dropdownTimeout.current !== null) {
+      clearTimeout(dropdownTimeout.current);
+      dropdownTimeout.current = null;
+    }
+  };
+
+  const closeDropdown = () => {
+    clearCloseTimer();
+    setDropdownOpen(null);
+  };
+
+  const openDropdown = (label: string) => {
+    clearCloseTimer();
+    setDropdownOpen(label);
+  };
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    return () => {
+      if (dropdownTimeout.current !== null)
+        clearTimeout(dropdownTimeout.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleClickOutside(event: PointerEvent) {
       if (
         dropdownOpen === 'Apps' &&
         appsDropdownRef.current &&
         !appsDropdownRef.current.contains(event.target as Node)
       ) {
+        if (dropdownTimeout.current !== null) {
+          clearTimeout(dropdownTimeout.current);
+          dropdownTimeout.current = null;
+        }
         setDropdownOpen(null);
       }
     }
 
     if (dropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('pointerdown', handleClickOutside);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('pointerdown', handleClickOutside);
     };
   }, [dropdownOpen]);
 
@@ -56,19 +82,24 @@ export function DesktopNav() {
             ref={appsDropdownRef}
             className="relative"
             key={link.label}
-            onMouseEnter={() => {
-              if (!isTouchDevice()) {
-                if (dropdownTimeout.current)
-                  clearTimeout(dropdownTimeout.current);
-                setDropdownOpen(link.label);
-              }
+            onPointerEnter={(event) => {
+              if (event.pointerType !== 'touch') openDropdown(link.label);
             }}
-            onMouseLeave={() => {
-              if (!isTouchDevice()) {
-                dropdownTimeout.current = setTimeout(
-                  () => setDropdownOpen(null),
-                  100,
-                );
+            onPointerLeave={(event) => {
+              if (event.pointerType === 'touch') return;
+              clearCloseTimer();
+              if (event.currentTarget.contains(document.activeElement)) return;
+              dropdownTimeout.current = setTimeout(closeDropdown, 150);
+            }}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget))
+                closeDropdown();
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape' && dropdownOpen === link.label) {
+                event.preventDefault();
+                closeDropdown();
+                dropdownButtonRef.current?.focus();
               }
             }}>
             <div className="group relative flex items-center gap-0.5">
@@ -81,16 +112,19 @@ export function DesktopNav() {
                     ? 'text-(--color-accent) after:scale-x-100'
                     : 'text-(--color-on-surface)'
                 }`}
-                tabIndex={0}
-                aria-haspopup="menu"
-                aria-expanded={dropdownOpen === link.label}>
+                onFocus={() => openDropdown(link.label)}
+                onClick={closeDropdown}>
                 {link.label}
               </Link>
               <button
+                ref={dropdownButtonRef}
                 type="button"
                 className="flex items-center rounded-sm p-1 focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--color-surface-2) focus-visible:outline-none"
                 aria-label={`Toggle ${link.label} menu`}
+                aria-expanded={dropdownOpen === link.label}
+                aria-controls={submenuId}
                 onClick={() => {
+                  clearCloseTimer();
                   setDropdownOpen(
                     dropdownOpen === link.label ? null : link.label,
                   );
@@ -111,47 +145,27 @@ export function DesktopNav() {
             </div>
             {/* Dropdown menu */}
             <div
-              className={`absolute top-full right-0 z-20 mt-4 min-w-48 origin-top-right rounded-2xl border border-(--color-border-strong) bg-(--color-surface-1) p-1.5 shadow-(--shadow-card) transition-[opacity,transform] duration-200 ${dropdownOpen === link.label ? 'pointer-events-auto translate-y-0 scale-100 opacity-100' : 'pointer-events-none translate-y-1 scale-98 opacity-0'}`}
-              role="menu"
-              aria-label={`${link.label} submenu`}
-              onMouseEnter={() => {
-                if (!isTouchDevice()) {
-                  if (dropdownTimeout.current)
-                    clearTimeout(dropdownTimeout.current);
-                  setDropdownOpen(link.label);
-                }
-              }}
-              onMouseLeave={() => {
-                if (!isTouchDevice()) {
-                  dropdownTimeout.current = setTimeout(
-                    () => setDropdownOpen(null),
-                    100,
-                  );
-                }
-              }}>
-              {link.children?.map((child) => (
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  className={`block w-full rounded-xl px-3 py-2.5 text-sm transition-colors duration-200 hover:bg-(--color-accent-a10) hover:text-(--color-accent) focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:outline-none ${
-                    isActiveLink(pathname, child.href)
-                      ? 'font-semibold text-(--color-accent)'
-                      : 'text-(--color-on-surface)'
-                  }`}
-                  role="menuitem"
-                  tabIndex={0}
-                  onFocus={() => setDropdownOpen(link.label)}
-                  onBlur={(e) => {
-                    if (
-                      !(e.relatedTarget instanceof Node) ||
-                      !e.currentTarget.parentElement?.contains(e.relatedTarget)
-                    ) {
-                      setDropdownOpen(null);
-                    }
-                  }}>
-                  {child.label}
-                </Link>
-              ))}
+              id={submenuId}
+              className={`absolute top-full right-0 z-20 min-w-48 pt-4 transition-opacity duration-150 motion-reduce:transition-none ${dropdownOpen === link.label ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
+              aria-hidden={dropdownOpen !== link.label}
+              inert={dropdownOpen !== link.label}
+              aria-label={`${link.label} submenu`}>
+              <div className="rounded-2xl border border-(--color-border-strong) bg-(--color-surface-1) p-1.5 shadow-(--shadow-card)">
+                {link.children?.map((child) => (
+                  <Link
+                    key={child.href}
+                    href={child.href}
+                    className={`block w-full rounded-xl px-3 py-2.5 text-sm transition-colors duration-200 hover:bg-(--color-accent-a10) hover:text-(--color-accent) focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:outline-none ${
+                      isActiveLink(pathname, child.href)
+                        ? 'font-semibold text-(--color-accent)'
+                        : 'text-(--color-on-surface)'
+                    }`}
+                    onFocus={() => openDropdown(link.label)}
+                    onClick={closeDropdown}>
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         ),

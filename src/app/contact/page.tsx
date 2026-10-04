@@ -30,19 +30,19 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <article className="motion-enter rounded-(--radius-panel) border border-(--color-border-strong) bg-(--color-surface-1) p-7 shadow-(--shadow-card) [animation-delay:240ms] sm:p-10">
+        <article className="motion-enter rounded-(--radius-panel) border border-(--color-border-strong) bg-(--color-surface-1) p-7 shadow-[0_8px_24px_rgba(0,0,0,0.14)] [animation-delay:240ms] sm:p-10">
           <p className="text-xs font-semibold tracking-[0.16em] text-(--color-accent) uppercase">
             Email
           </p>
-          <p className="mt-5 text-xl font-semibold tracking-[-0.035em] text-(--color-on-surface)">
+          <p className="mt-5 text-xl font-semibold tracking-[-0.035em] wrap-anywhere text-(--color-on-surface)">
             sim@zenshuii.com
           </p>
           <a
             href="mailto:sim@zenshuii.com"
-            className="mt-8 inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-on-accent) shadow-(--shadow-button) transition-all duration-200 hover:bg-(--color-accent-hover) focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--color-surface-1) focus-visible:outline-none active:opacity-85 motion-safe:hover:-translate-y-px">
-            <Mail size={17} aria-hidden="true" />
+            className="mt-8 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-on-accent) transition-colors duration-200 hover:bg-(--color-accent-hover) focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--color-surface-1) focus-visible:outline-none active:opacity-85 sm:w-auto">
+            <Mail size={17} className="shrink-0" aria-hidden="true" />
             Send an email
-            <ArrowUpRight size={16} aria-hidden="true" />
+            <ArrowUpRight size={16} className="shrink-0" aria-hidden="true" />
           </a>
         </article>
       </div>
