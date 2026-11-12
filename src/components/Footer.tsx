@@ -37,7 +37,7 @@ export function Footer() {
             />
           </Link>
           <Link
-            href="https://www.facebook.com/profile.php?id=61580432228149"
+            href="https://www.facebook.com/zenshuiistudios"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
