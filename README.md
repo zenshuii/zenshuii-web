@@ -50,9 +50,29 @@ browser-specific appearance. Keep the SVG, ICO and PNG artwork consistent.
 - `public/apple-touch-icon.png` is an opaque 180 px square with extra logo padding
   for Apple home screens and bookmarks. Let Apple apply the corner treatment.
 
-Icon links live in `src/app/layout.tsx`. When replacing a favicon, update both
-formats and bump their URL version there to help refresh browser caches. Keep the
-unversioned files up to date too, for clients that discover icons automatically.
+Icon links live in `src/app/layout.tsx`. When replacing a favicon, update every
+format and bump `siteIconVersion` in `src/utils/metadata.ts` to refresh the tab
+icon and sharing thumbnail URLs together. Keep the unversioned files up to date
+too, for clients that discover icons automatically.
+
+## Link previews
+
+Use `createPageMetadata` in `src/utils/metadata.ts` for every page, including the
+homepage defaults in the root layout. The helper keeps canonical URLs, Open Graph
+fields and X card metadata together so page overrides retain the shared fields.
+Browser titles keep the Zenshuii branding; sharing titles use the page title alone,
+with the brand supplied separately through `og:site_name`.
+
+General pages request compact X summary cards with an explicit square PNG logo
+and image alt text. They omit `og:image` so clients such as Messages can use the
+Apple touch icon or favicon. Each platform controls its final layout and caches.
+
+When adding meaningful page-specific preview artwork, include its image URL,
+dimensions and alt text in Open Graph metadata, plus matching X image metadata
+and the appropriate card type. Add that through the shared helper: Next.js
+replaces nested metadata objects rather than deeply merging them. Use a new image
+URL when replacing preview artwork, then verify the deployed URL on the target
+platforms.
 
 ## License
 
