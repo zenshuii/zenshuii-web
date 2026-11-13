@@ -41,15 +41,17 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
+    // Keep every favicon opaque so Safari doesn't add a backing to transparent corners.
     icon: [
       {
-        url: '/favicon.ico',
+        url: '/favicon.ico?v=2',
         type: 'image/x-icon',
-        sizes: '32x32',
+        sizes: '16x16 32x32 48x48',
       },
       {
-        url: '/favicon.svg',
+        url: '/favicon.svg?v=2',
         type: 'image/svg+xml',
+        sizes: 'any',
       },
     ],
     apple: {
