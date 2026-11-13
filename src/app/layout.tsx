@@ -41,15 +41,15 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    // Keep every favicon opaque so Safari doesn't add a backing to transparent corners.
+    // Use matching rounded-square artwork across every favicon format.
     icon: [
       {
-        url: '/favicon.ico?v=2',
+        url: '/favicon.ico?v=5',
         type: 'image/x-icon',
         sizes: '16x16 32x32 48x48',
       },
       {
-        url: '/favicon.svg?v=2',
+        url: '/favicon.svg?v=5',
         type: 'image/svg+xml',
         sizes: 'any',
       },
