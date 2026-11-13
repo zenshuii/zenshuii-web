@@ -52,7 +52,7 @@ export const metadata: Metadata = {
       },
     ],
     apple: {
-      url: '/apple-touch-icon.png',
+      url: `/apple-touch-icon.png?v=${siteIconVersion}`,
       type: 'image/png',
       sizes: '180x180',
     },

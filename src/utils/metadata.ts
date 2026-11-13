@@ -5,10 +5,13 @@ export const siteName = 'Zenshuii';
 export const siteTagline = 'Digital tools for a more intentional life.';
 export const siteDescription =
   'Zenshuii is an independent creative studio making thoughtful apps for personal growth, wellbeing, and everyday clarity.';
-export const siteIconVersion = '5';
+export const siteIconVersion = '6';
 
-const socialIcon = {
-  url: new URL(`/favicon-square.png?v=${siteIconVersion}`, siteUrl),
+const socialImage = {
+  url: new URL('/social-preview-v1.png', siteUrl),
+  width: 1024,
+  height: 1024,
+  type: 'image/png',
   alt: `${siteName} logo`,
 };
 
@@ -34,12 +37,13 @@ export function createPageMetadata({
       siteName,
       title,
       description,
+      images: [socialImage],
     },
     twitter: {
       card: 'summary',
       title,
       description,
-      images: [socialIcon],
+      images: [{ url: socialImage.url, alt: socialImage.alt }],
     },
   };
 }
