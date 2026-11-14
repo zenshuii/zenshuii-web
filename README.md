@@ -15,7 +15,8 @@ Open [localhost:3000](http://localhost:3000).
 
 - `npm run build` — create a production build.
 - `npm run start` — serve the production build.
-- `npx eslint .` — run lint checks.
+- `npm run lint` — run lint checks.
+- `npm run typecheck` — check TypeScript types.
 
 ## Deployment
 
