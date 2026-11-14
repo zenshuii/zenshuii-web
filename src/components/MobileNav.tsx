@@ -3,10 +3,13 @@
 import Link from 'next/link';
 import { ChevronDown, X } from 'lucide-react';
 import { createPortal } from 'react-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
 import { usePathname } from 'next/navigation';
 import { navLinks } from '@/data/navLinks';
 import { isActiveLink, isAnyChildActive } from '@/utils/navHelpers';
+
+// Keep the browser-only portal out of the server and initial hydration render.
+const subscribeToClient = () => () => undefined;
 
 export function MobileNav({
   open,
@@ -15,7 +18,11 @@ export function MobileNav({
   open: boolean;
   setOpen: (val: boolean) => void;
 }) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    subscribeToClient,
+    () => true,
+    () => false,
+  );
   const [appsOpen, setAppsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -25,10 +32,6 @@ export function MobileNav({
     },
     [setOpen],
   );
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
