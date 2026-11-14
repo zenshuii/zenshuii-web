@@ -4,7 +4,7 @@ Official website for **Zenshuii**, built with Next.js, TypeScript and Tailwind C
 
 ## Development
 
-Use Node.js 22 LTS.
+Use Node.js 26 LTS.
 
 ```bash
 npm ci
