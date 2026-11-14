@@ -4,7 +4,14 @@ import './globals.css';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/next';
-import { siteDescription, siteName, siteUrl } from '@/utils/metadata';
+import {
+  createPageMetadata,
+  siteDescription,
+  siteIconVersion,
+  siteName,
+  siteTagline,
+  siteUrl,
+} from '@/utils/metadata';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -19,41 +26,33 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: siteTagline,
+    description: siteDescription,
+    path: '/',
+  }),
   metadataBase: siteUrl,
   title: {
-    default: 'Zenshuii – Digital tools for a more intentional life.',
-    template: '%s | Zenshuii',
-  },
-  description: siteDescription,
-  alternates: { canonical: '/' },
-  openGraph: {
-    type: 'website',
-    locale: 'en_GB',
-    url: '/',
-    siteName,
-    title: 'Zenshuii – Digital tools for a more intentional life.',
-    description: siteDescription,
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Zenshuii – Digital tools for a more intentional life.',
-    description: siteDescription,
+    default: `${siteName} – ${siteTagline}`,
+    template: `%s | ${siteName}`,
   },
   robots: { index: true, follow: true },
   icons: {
+    // Use matching rounded-square artwork across every favicon format.
     icon: [
       {
-        url: '/favicon.ico',
+        url: `/favicon.ico?v=${siteIconVersion}`,
         type: 'image/x-icon',
-        sizes: '32x32',
+        sizes: '16x16 32x32 48x48',
       },
       {
-        url: '/favicon.svg',
+        url: `/favicon.svg?v=${siteIconVersion}`,
         type: 'image/svg+xml',
+        sizes: 'any',
       },
     ],
     apple: {
-      url: '/apple-touch-icon.png',
+      url: `/apple-touch-icon.png?v=${siteIconVersion}`,
       type: 'image/png',
       sizes: '180x180',
     },
