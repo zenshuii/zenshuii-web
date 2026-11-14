@@ -1,87 +1,38 @@
 # Zenshuii Web
 
-Official website for **Zenshuii** – building mindful digital experiences.
+Official website for **Zenshuii**, built with Next.js, TypeScript and Tailwind CSS.
 
-## Tech Stack
-
-- [Next.js 15](https://nextjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [ESLint](https://eslint.org/) + Prettier
-- [Vercel](https://vercel.com/) for deployment
-
-## Getting Started
-
-Install dependencies:
+## Development
 
 ```bash
-npm install
-```
-
-Start the development server:
-
-```bash
+npm ci
 npm run dev
 ```
 
-Visit `http://localhost:3000` to view the site.
+Open [localhost:3000](http://localhost:3000).
 
-## Scripts
+## Commands
 
-- `dev`: Start local server
-- `build`: Production build
-- `start`: Start production server
-- `lint`: Run ESLint
+- `npm run build` — create a production build.
+- `npm run start` — serve the production build.
+- `npx eslint .` — run lint checks.
 
 ## Deployment
 
-This project is deployed via **Vercel**. Pushes to the `main` branch trigger deployments automatically.
+Hosted on Vercel. To deploy, draft a new release in GitHub.
 
-## Site icons
+## Metadata and assets
 
-Use the same dark rounded square with a centred mark for every tab favicon
-format. Its 48-unit corner radius on a 300-unit canvas leaves transparent corners.
-Safari may display a white backing behind those corners; this is an accepted
-browser-specific appearance. Keep the SVG, ICO and PNG artwork consistent.
+Use `createPageMetadata` in `src/utils/metadata.ts` for page titles, descriptions
+and sharing metadata. Icon links are configured in `src/app/layout.tsx`.
 
-- `public/favicon.svg` is the favicon source, including the rounded `#1c1c1c` background.
-- `public/favicon.ico` contains 16, 32, and 48 px versions of that artwork.
-- `public/favicon.png` and `public/favicon-square.png` are 1024 px raster copies.
-- `public/apple-touch-icon.png` is an opaque 180 px square with centred artwork
-  occupying roughly 70% of its height, leaving 15% padding above and below.
-  Let Apple apply the corner treatment.
+- `public/favicon.svg` — favicon source; keep the ICO and PNG exports in sync.
+- `public/apple-touch-icon.png` — 180 × 180 Apple touch icon.
+- `public/social-thumbnail-v1.png` — 256 × 256 sharing thumbnail.
 
-Icon links live in `src/app/layout.tsx`. When replacing a favicon, update every
-format and bump `siteIconVersion` in `src/utils/metadata.ts` to refresh the tab
-and Apple touch icon URLs together. Keep the unversioned files up to date
-too, for clients that discover icons automatically.
-
-## Link previews
-
-Use `createPageMetadata` in `src/utils/metadata.ts` for every page, including the
-homepage defaults in the root layout. The helper keeps canonical URLs, Open Graph
-fields and X card metadata together so page overrides retain the shared fields.
-Browser titles keep the Zenshuii branding; sharing titles use the page title alone,
-with the brand supplied separately through `og:site_name`.
-
-General pages explicitly use `public/social-preview-v1.png` for Open Graph and X
-previews. It is an opaque 1024 px square with the centred logo occupying roughly
-80% of the image height, reducing the empty space in square thumbnails. Export
-it from the favicon's logo artwork with a full square `#1c1c1c` background rather
-than rounding its outer corners. The Apple touch icon uses the same artwork at a
-smaller 70% height for more breathing room on home screens and in bookmarks.
-
-The helper supplies the image's absolute URL, dimensions, type and alt text for
-Open Graph, and matching image and alt text for X. X cards request the compact
-`summary` layout; other platforms choose their own layout and crops.
-
-When adding meaningful page-specific preview artwork, include its image URL,
-dimensions and alt text in Open Graph metadata, plus matching X image metadata
-and the appropriate card type. Add that through the shared helper: Next.js
-replaces nested metadata objects rather than deeply merging them. Give replacement
-sharing artwork a new filename (for example, `social-preview-v2.png`) and update
-the helper's URL. Platforms cache previews, so verify a newly shared deployed URL
-on WhatsApp and the other target platforms after publishing.
+Export artwork from the SVG, keeping Apple and sharing backgrounds opaque.
+Increment `siteIconVersion` when icons change. For updated sharing artwork, use a
+new filename and update its URL in the metadata helper.
 
 ## License
 
