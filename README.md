@@ -4,6 +4,8 @@ Official website for **Zenshuii**, built with Next.js, TypeScript and Tailwind C
 
 ## Development
 
+Use Node.js 22 LTS.
+
 ```bash
 npm ci
 npm run dev
@@ -13,10 +15,13 @@ Open [localhost:3000](http://localhost:3000).
 
 ## Commands
 
-- `npm run build` — create a production build.
+- `npm run build` — lint and create a production build.
 - `npm run start` — serve the production build.
 - `npm run lint` — run lint checks.
 - `npm run typecheck` — check TypeScript types.
+
+The scoped `minimatch` override in `package.json` patches the TypeScript lint
+toolchain. Revisit it when the upstream dependency range includes the security fix.
 
 ## Deployment
 

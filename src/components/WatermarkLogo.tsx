@@ -21,6 +21,7 @@ export function WatermarkLogo({
           alt={alt}
           width={560}
           height={560}
+          loading="eager"
           className="h-auto w-full"
           sizes="(min-width: 1120px) 560px, (min-width: 640px) 55vw, 60vw"
           role="presentation"
