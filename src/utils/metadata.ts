@@ -8,9 +8,9 @@ export const siteDescription =
 export const siteIconVersion = '6';
 
 const socialImage = {
-  url: new URL('/social-preview-v1.png', siteUrl),
-  width: 1024,
-  height: 1024,
+  url: new URL('/social-thumbnail-v1.png', siteUrl),
+  width: 256,
+  height: 256,
   type: 'image/png',
   alt: `${siteName} logo`,
 };
