@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const siteUrl = new URL('https://zenshuii.com');
 export const siteName = 'Zenshuii';
-export const siteTagline = 'Digital tools for a more intentional life';
+export const siteTagline = 'Digital Tools for a More Intentional Life';
 export const siteDescription =
   'Zenshuii is an independent creative studio making thoughtful apps for personal growth, wellbeing, and everyday clarity.';
 export const siteIconVersion = '6';
