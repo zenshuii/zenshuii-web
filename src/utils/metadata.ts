@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const siteUrl = new URL('https://zenshuii.com');
 export const siteName = 'Zenshuii';
-export const siteTagline = 'Digital tools for a more intentional life.';
+export const siteTagline = 'Digital tools for a more intentional life';
 export const siteDescription =
   'Zenshuii is an independent creative studio making thoughtful apps for personal growth, wellbeing, and everyday clarity.';
 export const siteIconVersion = '6';
@@ -26,6 +26,9 @@ export function createPageMetadata({
   description,
   path,
 }: PageMetadata): Metadata {
+  const socialTitle =
+    path === '/' ? `${siteName} – ${title}` : `${title} | ${siteName}`;
+
   return {
     title,
     description,
@@ -35,13 +38,13 @@ export function createPageMetadata({
       locale: 'en_GB',
       url: path,
       siteName,
-      title,
+      title: socialTitle,
       description,
       images: [socialImage],
     },
     twitter: {
       card: 'summary',
-      title,
+      title: socialTitle,
       description,
       images: [{ url: socialImage.url, alt: socialImage.alt }],
     },
