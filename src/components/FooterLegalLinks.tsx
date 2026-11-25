@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const linkClassName =
-  'inline-flex min-h-11 items-center rounded-sm px-2 transition-colors hover:text-(--color-accent) aria-[current=page]:text-(--color-accent) focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:outline-none';
+  'inline-flex min-h-11 items-center rounded-sm px-2 transition-colors hover:text-(--color-accent) aria-[current=page]:font-semibold aria-[current=page]:text-(--color-accent) focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:outline-none';
 
 export function FooterLegalLinks() {
   const pathname = usePathname();

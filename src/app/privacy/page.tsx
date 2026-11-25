@@ -57,35 +57,41 @@ export default function PrivacyPage() {
       </p>
       <h2>Service providers and international processing</h2>
       <p>
-        We use Vercel for website hosting and analytics, and email service
-        providers to receive and respond to messages. We may also share
+        We use Vercel for website hosting and analytics, and Google&apos;s Gmail
+        service to receive, store, and respond to enquiries. We may also share
         information with professional advisers or authorities where necessary to
         meet legal obligations or establish, exercise, or defend legal claims.
       </p>
       <p>
-        Service providers may process information outside the United Kingdom.
-        Where a restricted transfer takes place, appropriate safeguards are
-        required, such as UK adequacy regulations or approved contractual
-        safeguards. Contact us for information about the safeguards relevant to
-        your information. Vercel publishes its{' '}
-        <a href="https://vercel.com/legal/dpa">data processing terms</a>.
+        Vercel and Google may process information outside the United Kingdom.
+        Their privacy notices explain how they handle international transfers.
+        See{' '}
+        <a href="https://vercel.com/legal/privacy-notice">
+          Vercel&apos;s privacy notice
+        </a>{' '}
+        and{' '}
+        <a href="https://policies.google.com/privacy?hl=en-GB">
+          Google&apos;s privacy policy
+        </a>
+        . Contact us for details about the safeguards that apply to your
+        information.
       </p>
       <h2>How long we keep information</h2>
       <p>
         We keep enquiry correspondence for as long as needed to respond to the
-        enquiry and manage any resulting relationship. We may retain relevant
-        records for longer where needed for legal, accounting, or dispute
-        purposes. The appropriate period depends on the enquiry, any ongoing
-        relationship, and applicable record-keeping requirements.
+        enquiry and manage any resulting relationship. We review enquiry
+        correspondence at least once a year and delete messages we no longer
+        need. We may keep relevant records for longer where needed for legal,
+        accounting, or dispute purposes.
       </p>
       <p>Vercel Web Analytics discards visitor sessions after 24 hours.</p>
       <h2>Your rights</h2>
       <p>
         Depending on the circumstances, you can ask to access, correct, or
         delete your personal information, restrict its use, or receive a
-        portable copy. You can object to processing based on legitimate
-        interests. Email <a href={`mailto:${company.email}`}>{company.email}</a>{' '}
-        to exercise your rights or ask a question about this notice.
+        portable copy. Email{' '}
+        <a href={`mailto:${company.email}`}>{company.email}</a> to exercise your
+        rights or ask a question about this notice.
       </p>
       <p>
         You also have the right to complain to the{' '}
@@ -93,6 +99,12 @@ export default function PrivacyPage() {
           Information Commissioner&apos;s Office (ICO)
         </a>
         , the UK data protection regulator.
+      </p>
+      <h2>Right to object</h2>
+      <p>
+        You can object to our use of your personal information when we rely on
+        legitimate interests. To object, email{' '}
+        <a href={`mailto:${company.email}`}>{company.email}</a>.
       </p>
       <h2>Other websites and products</h2>
       <p>
