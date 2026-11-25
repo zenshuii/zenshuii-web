@@ -17,7 +17,9 @@ export function FooterLegalLinks() {
         className={linkClassName}>
         Privacy
       </Link>
-      <span aria-hidden="true">&middot;</span>
+      <span aria-hidden="true" className="opacity-70">
+        |
+      </span>
       <Link
         href="/legal"
         aria-current={pathname === '/legal' ? 'page' : undefined}
