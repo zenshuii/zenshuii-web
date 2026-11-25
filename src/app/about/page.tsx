@@ -29,6 +29,10 @@ export default function AboutPage() {
             exploring how digital products can support the way people think,
             reflect, and move through the day.
           </p>
+          <p className="motion-enter mt-4 text-base leading-relaxed text-(--color-text-muted) [animation-delay:240ms]">
+            The studio is operated by Zenshuii Ltd, a company registered in
+            England and Wales.
+          </p>
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
