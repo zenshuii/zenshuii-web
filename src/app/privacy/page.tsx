@@ -37,9 +37,9 @@ export default function PrivacyPage() {
       </p>
       <p>
         Our hosting provider, Vercel, processes technical information such as IP
-        addresses, request details, and diagnostic logs to deliver and protect
-        the website. We rely on our legitimate interest in providing a secure,
-        reliable website for this processing.
+        addresses and request details to deliver and protect the website. We
+        rely on our legitimate interest in providing a secure, reliable website
+        for this processing.
       </p>
       <h2>Analytics and cookies</h2>
       <p>
@@ -76,10 +76,9 @@ export default function PrivacyPage() {
         enquiry and manage any resulting relationship. We may retain relevant
         records for longer where needed for legal, accounting, or dispute
         purposes. The appropriate period depends on the enquiry, any ongoing
-        relationship, and applicable record-keeping requirements. Hosting and
-        analytics information is retained according to the relevant service
-        settings and provider retention periods.
+        relationship, and applicable record-keeping requirements.
       </p>
+      <p>Vercel Web Analytics discards visitor sessions after 24 hours.</p>
       <h2>Your rights</h2>
       <p>
         Depending on the circumstances, you can ask to access, correct, or
