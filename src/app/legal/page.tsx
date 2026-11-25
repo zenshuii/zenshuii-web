@@ -14,8 +14,8 @@ export default function LegalPage() {
   return (
     <LegalPageLayout title="Legal information">
       <p>
-        Zenshuii is an independent creative studio operated by {company.name}.
-        This website, zenshuii.com, is operated by {company.name}.
+        This website, zenshuii.com, is operated by {company.name}, an
+        independent creative studio.
       </p>
       <h2>Company details</h2>
       <dl>

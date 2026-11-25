@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ViewportReveal } from '@/components/ViewportReveal';
+import { company } from '@/data/company';
 import { createPageMetadata } from '@/utils/metadata';
 
 export const metadata: Metadata = createPageMetadata({
@@ -30,8 +31,7 @@ export default function AboutPage() {
             reflect, and move through the day.
           </p>
           <p className="motion-enter mt-4 text-base leading-relaxed text-(--color-text-muted) [animation-delay:240ms]">
-            The studio is operated by Zenshuii Ltd, a company registered in
-            England and Wales.
+            Zenshuii is registered in {company.jurisdiction} as {company.name}.
           </p>
         </div>
 
