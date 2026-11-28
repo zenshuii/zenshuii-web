@@ -57,23 +57,17 @@ export default function PrivacyPage() {
       </p>
       <h2>Service providers and international processing</h2>
       <p>
-        We use Vercel for website hosting and analytics, and Google&apos;s Gmail
-        service to receive, store, and respond to enquiries. We may also share
+        We use Vercel for website hosting and analytics and an email service
+        provider to receive, store, and respond to enquiries. We may also share
         information with professional advisers or authorities where necessary to
         meet legal obligations or establish, exercise, or defend legal claims.
       </p>
       <p>
-        Vercel and Google may process information outside the United Kingdom.
-        Their privacy notices explain how they handle international transfers.
-        See{' '}
-        <a href="https://vercel.com/legal/privacy-notice">
-          Vercel&apos;s privacy notice
-        </a>{' '}
-        and{' '}
-        <a href="https://policies.google.com/privacy?hl=en-GB">
-          Google&apos;s privacy policy
-        </a>
-        . Contact us for details about the safeguards that apply to your
+        Vercel and our email service provider may process information outside
+        the United Kingdom. Vercel explains how it handles international
+        transfers in its{' '}
+        <a href="https://vercel.com/legal/privacy-notice">privacy notice</a>.
+        Contact us for details about the safeguards that apply to your
         information.
       </p>
       <h2>How long we keep information</h2>
