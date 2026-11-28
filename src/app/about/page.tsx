@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { ViewportReveal } from '@/components/ViewportReveal';
+import { company } from '@/data/company';
 import { createPageMetadata } from '@/utils/metadata';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'About',
   description:
-    'Learn about Zenshuii, an independent creative studio by Simone Melidoni, making thoughtful digital products for everyday life.',
+    'Learn about Zenshuii, an independent creative studio by Simone, making thoughtful digital products for everyday life.',
   path: '/about',
 });
 
@@ -25,9 +26,12 @@ export default function AboutPage() {
             A studio for thoughtful digital products.
           </h1>
           <p className="motion-enter mt-6 max-w-2xl text-lg leading-relaxed text-(--color-text-muted) [animation-delay:160ms] sm:text-xl">
-            Founded by Simone Melidoni, Zenshuii is a small independent studio
-            exploring how digital products can support the way people think,
-            reflect, and move through the day.
+            Founded by Simone, Zenshuii is a small independent studio exploring
+            how digital products can support the way people think, reflect, and
+            move through the day.
+          </p>
+          <p className="motion-enter mt-4 text-base leading-relaxed text-(--color-text-muted) [animation-delay:240ms]">
+            Zenshuii is registered in {company.jurisdiction} as {company.name}.
           </p>
         </div>
 

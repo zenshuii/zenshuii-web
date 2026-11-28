@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail } from 'lucide-react';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { createPageMetadata } from '@/utils/metadata';
 
@@ -44,6 +45,15 @@ export default function ContactPage() {
             Send an email
             <ArrowUpRight size={16} className="shrink-0" aria-hidden="true" />
           </a>
+          <p className="mt-5 text-sm leading-relaxed text-(--color-text-muted)">
+            Read our{' '}
+            <Link
+              href="/privacy"
+              className="rounded-sm underline underline-offset-4 hover:text-(--color-accent) focus-visible:ring-2 focus-visible:ring-(--color-accent) focus-visible:outline-none">
+              privacy notice
+            </Link>{' '}
+            for how Zenshuii Ltd handles your enquiry.
+          </p>
         </article>
       </div>
     </section>

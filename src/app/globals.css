@@ -123,6 +123,55 @@ body {
   color: var(--color-on-surface);
 }
 
+.legal-copy {
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.legal-copy h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-on-surface);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.legal-copy p + p {
+  margin-top: 1rem;
+}
+
+.legal-copy dl {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.legal-copy dt {
+  color: var(--color-on-surface);
+  font-weight: 500;
+}
+
+.legal-copy dd {
+  margin-top: 0.25rem;
+}
+
+.legal-copy a {
+  border-radius: 2px;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.legal-copy a:hover {
+  color: var(--color-accent-hover);
+}
+
+.legal-copy a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
 .animate-shimmer {
   animation: shimmer 1.2s linear infinite;
   background-size: 200% 100%;
